@@ -21,7 +21,7 @@ class _BmiPageState extends State<BmiPage> {
 
   double weight = 50;
 
-  int age = 20;
+  double age = 20;
   String bmi = 'normal';
 
   var result;
@@ -58,38 +58,6 @@ class _BmiPageState extends State<BmiPage> {
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    // Expanded(
-                    //   child: GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         isMale = true;
-                    //       });
-                    //     },
-                    //     child: Container(
-                    //       decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(16.0),
-                    //         color: isMale ? Colors.black54 : Colors.black26,
-                    //       ),
-                    //       child: Column(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           Icon(
-                    //             Icons.male,
-                    //             size: 55,
-                    //             color: Colors.white,
-                    //           ),
-                    //           Text(
-                    //             'Male',
-                    //             style: TextStyle(
-                    //                 fontWeight: FontWeight.w500,
-                    //                 fontSize: 24.0,
-                    //                 color: Colors.white),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     Gender(
                         func: () {
                           setState(() {
@@ -104,38 +72,6 @@ class _BmiPageState extends State<BmiPage> {
                     const SizedBox(
                       width: 16.0,
                     ),
-                    // Expanded(
-                    //   child: GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         isMale = false;
-                    //       });
-                    //     },
-                    //     child: Container(
-                    //       decoration: BoxDecoration(
-                    //         borderRadius: BorderRadius.circular(16.0),
-                    //         color: !isMale ? Colors.black54 : Colors.black26,
-                    //       ),
-                    //       child: Column(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           Icon(
-                    //             Icons.female,
-                    //             size: 55,
-                    //             color: Colors.white,
-                    //           ),
-                    //           Text(
-                    //             'Female',
-                    //             style: TextStyle(
-                    //                 fontWeight: FontWeight.w500,
-                    //                 fontSize: 24.0,
-                    //                 color: Colors.white),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     Gender(
                         func: () {
                           setState(() {
@@ -208,16 +144,36 @@ class _BmiPageState extends State<BmiPage> {
               child: Row(
                 children: [
                   PlusMinus(
-                    num: weight.round(),
                     heroTag1: 'w--',
                     heroTag2: 'w++',
                     name: 'WEIGHT',
+                    func1: () {
+                      setState(() {
+                        weight--;
+                      });
+                    },
+                    func2: () {
+                      setState(() {
+                        weight++;
+                      });
+                    },
+                    num: weight,
                   ),
                   PlusMinus(
-                    num: age,
                     heroTag1: 'age--',
                     heroTag2: 'age++',
                     name: 'AGE',
+                    func1: () {
+                      setState(() {
+                        age--;
+                      });
+                    },
+                    func2: () {
+                      setState(() {
+                        age++;
+                      });
+                    },
+                    num: age,
                   ),
                 ],
               ),

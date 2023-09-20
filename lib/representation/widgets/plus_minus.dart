@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class PlusMinus extends StatefulWidget {
-   int num;
+   final double num;
    final  heroTag1;
    final  heroTag2;
    final String name;
-   PlusMinus({super.key,  required this.num,required this.heroTag2,required this.heroTag1,required this.name});
+   final Function func1;
+   final Function func2;
+   const PlusMinus({required this.func2,required this.func1,super.key,required this.num,required this.heroTag2,required this.heroTag1,required this.name});
   @override
   State<PlusMinus> createState() => _PlusMinusState();
 }
@@ -30,7 +32,7 @@ class _PlusMinusState extends State<PlusMinus> {
                   const TextStyle(fontSize: 22.0, color: Colors.white),
                 ),
                 Text(
-                  '${widget.num}',
+                  '${widget.num.round()}',
                   style: const TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold,
@@ -41,11 +43,7 @@ class _PlusMinusState extends State<PlusMinus> {
                   children: [
                     FloatingActionButton(
                       heroTag: widget.heroTag1,
-                      onPressed: () {
-                        setState(() {
-                          widget.num--;
-                        });
-                      },
+                      onPressed: ()=>widget.func1(),
                       child: const Icon(
                         Icons.remove,
                         size: 35,
@@ -58,11 +56,7 @@ class _PlusMinusState extends State<PlusMinus> {
                     ),
                     FloatingActionButton(
                       heroTag: widget.heroTag2,
-                      onPressed: () {
-                        setState(() {
-                         widget.num++;
-                        });
-                      },
+                      onPressed: ()=>widget.func2(),
                       child: const Icon(
                         Icons.add,
                         size: 35,
