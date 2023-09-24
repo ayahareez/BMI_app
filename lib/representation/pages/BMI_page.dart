@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz2/data/models/bmi_info.dart';
 import 'package:quiz2/representation/pages/result_page.dart';
 import 'package:quiz2/representation/widgets/gender.dart';
 import 'package:quiz2/representation/widgets/plus_minus.dart';
@@ -13,18 +15,22 @@ class BmiPage extends StatefulWidget {
 }
 
 class _BmiPageState extends State<BmiPage> {
-  double val = 180;
 
-  bool isMale = true;
+  BmiInfo bmiInfo =BmiInfo(age: 20, weight: 50,  bmi: 'normal', isMale: true, height: 160, val: 180);
 
-  double height = 160;
 
-  double weight = 50;
-
-  double age = 20;
-  String bmi = 'normal';
-
-  var result;
+  // double val = 180;
+  //
+  // bool isMale = true;
+  //
+  // double height = 160;
+  //
+  // double weight = 50;
+  //
+  // double age = 20;
+  // String bmi = 'normal';
+  //
+  // var result;
 
   int calculateBMI(double weight, double height) {
     // Convert height from centimeters to meters
@@ -61,10 +67,10 @@ class _BmiPageState extends State<BmiPage> {
                     Gender(
                         func: () {
                           setState(() {
-                            isMale = true;
+                            bmiInfo.isMale = true;
                           });
                         },
-                        isMale: isMale,
+                        isMale: bmiInfo.isMale,
                         gender: 'MALE',
                         icon: Icons.male,
                       flag: 1,
@@ -75,10 +81,10 @@ class _BmiPageState extends State<BmiPage> {
                     Gender(
                         func: () {
                           setState(() {
-                            isMale = false;
+                            bmiInfo.isMale = false;
                           });
                         },
-                        isMale: isMale,
+                        isMale: bmiInfo.isMale,
                         gender: 'FEMALE',
                         icon: Icons.female,
                       flag: 2,
@@ -110,7 +116,7 @@ class _BmiPageState extends State<BmiPage> {
                         textBaseline: TextBaseline.alphabetic,
                         children: [
                           Text(
-                            '${height.round()}',
+                            '${bmiInfo.height.round()}',
                             style: const TextStyle(
                                 fontSize: 40.0,
                                 fontWeight: FontWeight.bold,
@@ -126,12 +132,12 @@ class _BmiPageState extends State<BmiPage> {
                         ],
                       ),
                       Slider(
-                        value: height,
+                        value: bmiInfo.height,
                         min: 80,
                         max: 220,
                         onChanged: (value) {
                           setState(() {
-                            height = value;
+                            bmiInfo.height = value;
                           });
                         },
                       )
@@ -149,15 +155,15 @@ class _BmiPageState extends State<BmiPage> {
                     name: 'WEIGHT',
                     func1: () {
                       setState(() {
-                        weight--;
+                        bmiInfo.weight--;
                       });
                     },
                     func2: () {
                       setState(() {
-                        weight++;
+                        bmiInfo.weight++;
                       });
                     },
-                    num: weight,
+                    num: bmiInfo.weight,
                   ),
                   PlusMinus(
                     heroTag1: 'age--',
@@ -165,35 +171,37 @@ class _BmiPageState extends State<BmiPage> {
                     name: 'AGE',
                     func1: () {
                       setState(() {
-                        age--;
+                        bmiInfo.age--;
                       });
                     },
                     func2: () {
                       setState(() {
-                        age++;
+                        bmiInfo.age++;
                       });
                     },
-                    num: age,
+                    num:bmiInfo.age,
                   ),
                 ],
               ),
             ),
             GestureDetector(
               onTap: () {
-                print('hello');
-                result = calculateBMI(weight, height);
-                if (result > 25) {
-                  bmi = 'OVERWEIGHT';
-                } else if (result < 18.5) {
-                  bmi = 'UNDERWEIGHT';
+                if (kDebugMode) {
+                  print('hello');
+                }
+                bmiInfo.result = calculateBMI(bmiInfo.weight, bmiInfo.height);
+                if (bmiInfo.result! > 25) {
+                  bmiInfo.bmi = 'OVERWEIGHT';
+                } else if (bmiInfo.result! < 18.5) {
+                  bmiInfo.bmi = 'UNDERWEIGHT';
                 } else {
-                  bmi = 'NORMAL';
+                  bmiInfo.bmi = 'NORMAL';
                 }
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            ResultPage(result: result, bmi: bmi)));
+                            ResultPage(result: bmiInfo.result!, bmi: bmiInfo.bmi)));
               },
               child: Container(
                 height: 50,

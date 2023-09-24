@@ -28,7 +28,7 @@ class ResultPage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'Your Result',
                 style: TextStyle(
                   color: Colors.white,
@@ -92,10 +92,10 @@ class ResultPage extends StatelessWidget {
                     const SizedBox(height: 32,),
                     ElevatedButton(
                         onPressed: (){},
-                        child: const Text('SAVE RESULT',style: TextStyle(color: Colors.white),),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey[600],
                       ),
+                        child: const Text('SAVE RESULT',style: TextStyle(color: Colors.white),),
                     ),
 
                   ],
@@ -113,7 +113,7 @@ class ResultPage extends StatelessWidget {
                   color: Colors.pink,
                   alignment: Alignment.center,
                   child: const Text(
-                    'CALCULATE',
+                    'RE_CALCULATE',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,

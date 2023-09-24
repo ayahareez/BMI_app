@@ -44,12 +44,12 @@ class _PlusMinusState extends State<PlusMinus> {
                     FloatingActionButton(
                       heroTag: widget.heroTag1,
                       onPressed: ()=>widget.func1(),
+                      backgroundColor: Colors.grey,
                       child: const Icon(
                         Icons.remove,
                         size: 35,
                         color: Colors.white,
                       ),
-                      backgroundColor: Colors.grey,
                     ),
                     const SizedBox(
                       width: 8,
@@ -57,12 +57,12 @@ class _PlusMinusState extends State<PlusMinus> {
                     FloatingActionButton(
                       heroTag: widget.heroTag2,
                       onPressed: ()=>widget.func2(),
+                      backgroundColor: Colors.grey,
                       child: const Icon(
                         Icons.add,
                         size: 35,
                         color: Colors.white,
                       ),
-                      backgroundColor: Colors.grey,
                     )
                   ],
                 )

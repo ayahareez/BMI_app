@@ -30,7 +30,7 @@ class Gender extends StatelessWidget {
               ),
               Text(
                 gender,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 24.0,
                     color: Colors.white
